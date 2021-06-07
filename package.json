@@ -1,6 +1,6 @@
 {
   "name": "newrelic",
-  "version": "7.3.1",
+  "version": "7.5.0",
   "author": "New Relic Node.js agent team <nodejs@newrelic.com>",
   "license": "Apache-2.0",
   "contributors": [
@@ -137,7 +137,8 @@
     "update-cross-agent-tests": "./bin/update-cats.sh",
     "versioned-tests": "./bin/run-versioned-tests.sh",
     "update-changelog-version": "node ./bin/update-changelog-version",
-    "versioned": "npm run prepare-test && time ./bin/run-versioned-tests.sh"
+    "versioned": "npm run prepare-test && time ./bin/run-versioned-tests.sh",
+    "prepare": "husky install"
   },
   "bin": {
     "newrelic-naming-rules": "./bin/test-naming-rules.js"
@@ -161,7 +162,7 @@
   },
   "devDependencies": {
     "@newrelic/proxy": "^2.0.0",
-    "@newrelic/test-utilities": "^5.0.0",
+    "@newrelic/test-utilities": "^5.1.0",
     "@octokit/rest": "^18.0.15",
     "JSV": "~4.0.2",
     "architect": "*",

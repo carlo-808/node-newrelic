@@ -1,3 +1,51 @@
+### v7.5.0 (2021-06-01)
+
+* Added default support for config files with a 'cjs' extension (`newrelic.cjs`) in addition to `newrelic.js`.
+
+  Thank you to @Maddemacher for the contribution!
+
+* Added ability to specify a custom config file name with the `NEW_RELIC_CONFIG_FILENAME` environment variable.
+
+  Thank you to @Maddemacher for the contribution!
+
+* Fixed issue when using the 'new_promise_tracking' feature flag where segment mapping may not get cleaned up for promises which never resolve but have all references removed (and thus get cleaned up by GC).
+
+  Adds segment cleanup on 'destroy' when using 'new_promise_tracking' feature flag in addition to the existing 'promiseResolve' hook. Unfortunately, preventing leaks for this edge-case does come with additional overhead due to adding another hook. Memory gains from feature flag usage should still be worth the trade-off and reduced garbage collection may offset perf/CPU impacts or event still result in net gain, depending on the application.
+
+* Bumped `@newrelic/test-utilities` to ^5.1.0.
+
+* Replaced deprecated `util.isArray` with `Array.isArray`.
+
+* Removed unused `listenerCount` method on `Shim`.
+
+* Properly bootstraped husky as a `prepare` script.
+
+* Removed commented-out console log from fastify instrumentation.
+
+### v7.4.0 (2021-05-11)
+
+* Updated third party notices and manifest for husky and lint-staged.
+
+* Updated redis versioned tests to use unique DB indexes per file to avoid collisions and flushing of in-progress tests.
+
+* Pinned hapi 17 versioned tests to only minor/patch versions within 17.x.
+
+* Bumped timeout for redis versioned tests.
+
+* Wired up husky + lint staged to execute linting on all changed files in pre-commit hook.
+
+* Handled a proxy misconfiguration of collector and log an actionable warning message.
+
+* Added `flaky_code` and `success_delay_ms` handling of flaky grpc connections to infinite tracing.
+
+* Added resources to README to highlight external modules that customers should be aware of and possibly use for their applications.
+
+* Logged all New Relic metadata env vars at startup.
+
+* Fixed images for improved reader experience.
+
+  Thank you to @henryjw for the contribution.
+
 ### v7.3.1 (2021-04-14)
 
 * Fixed issue with 'new_promise_tracking' feature flag functionality where segments for ended transactions would get propagated in certain cases by promises that had no continuations scheduled (via await or manually).
